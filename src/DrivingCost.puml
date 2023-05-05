@@ -1,0 +1,55 @@
+@startuml
+class DrivingCost{
+- car : Vehicle
+
++ calculateInsurance() : double
++ calculateConsumption() : double
++ calculateMaintenanceCost() : double
++ calculateTotalCostForGivenMonths(int months){}
+}
+
+enum CarType {
+GASOLINE,
+DIESEL,
+ELECTRIC
+}
+
+enum VehicleSize{
+SUBCOMPACT,
+COMPACT,
+MID_SIZE,
+LARGE
+}
+
+abstract class Vehicle {
+- vehicleSize : VehicleSize
+- numberOfCylinders : int
+- carType : CarType
+}
+class PetrolVehicle extends Vehicle implements CalculateCost{
+- maximumSpeed : int
+}
+
+class DieselVehicle extends Vehicle implements CalculateCost {
+}
+
+class ElectricVehicle implements CalculateCost{
+- carType : CarType
+- capacity : int
+- powerOfBattery : double
+
+}
+
+interface CalculateCost{
+calculateInsurance() : double
+calculateConsumption() : double
+calculateMaintenanceCost() : double
+}
+
+DrivingCost --. Vehicle
+Vehicle -- CarType
+Vehicle -- VehicleSize
+
+
+
+@enduml
